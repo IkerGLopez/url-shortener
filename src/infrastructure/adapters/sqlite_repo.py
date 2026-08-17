@@ -11,7 +11,8 @@ class SQLite(IUrlRepository):
                 original_url TEXT,
                 short_code TEXT PRIMARY KEY,
                 created_at TIMESTAMP,
-                click_count INTEGER
+                click_count INTEGER,
+                expires_at TIMESTAMP
             )
         """)
 
@@ -20,9 +21,9 @@ class SQLite(IUrlRepository):
 
         if not url_exists:
             self.cursor.execute("""
-                INSERT INTO URL VALUES(?, ?, ?, ?)
+                INSERT INTO URL VALUES(?, ?, ?, ?, ?)
             """,
-            (url.original_url, url.short_code, url.created_at, url.click_count)
+            (url.original_url, url.short_code, url.created_at, url.click_count, url.expires_at)
             )
         else:
             self.cursor.execute("""
@@ -50,7 +51,8 @@ class SQLite(IUrlRepository):
                 original_url=row[0],
                 short_code=row[1],
                 created_at=row[2],
-                click_count=row[3]
+                click_count=row[3],
+                expires_at=row[4]
             )
 
         return None

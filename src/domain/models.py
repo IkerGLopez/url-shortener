@@ -7,3 +7,4 @@ class URL:
     short_code: str
     created_at: datetime
     click_count: int
+    expires_at: datetime
