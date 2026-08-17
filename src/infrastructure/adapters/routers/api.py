@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI, HTTPException
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from src.application.use_cases import RedirectAndTrackUseCase, ShortenUrlUseCase
-from src.domain.exceptions import UrlNotFoundError
+from src.domain.exceptions import UrlNotFoundError, UrlExpiredError
 
 app = FastAPI()
 
@@ -29,3 +29,5 @@ def redirect_by_code(code: str, use_case: RedirectAndTrackUseCase = Depends(get_
         return RedirectResponse(original_url)
     except UrlNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
+    except UrlExpiredError as e:
+        raise HTTPException(status_code=410, detail=(str(e)))
