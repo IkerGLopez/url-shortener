@@ -32,3 +32,14 @@ class RedirectAndTrackUseCase:
         self.repository.save(url)
 
         return url.original_url
+
+class GetUrlStatsUseCase:
+    def __init__(self, repository: IUrlRepository):
+        self.repository = repository
+
+    def execute(self, code: str) -> URL:
+        url: URL = self.repository.get_by_code(code)
+        if not url:
+            raise UrlNotFoundError(code)
+
+        return url
