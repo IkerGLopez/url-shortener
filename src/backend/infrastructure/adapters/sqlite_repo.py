@@ -1,5 +1,5 @@
-from src.application.ports.repositories import IUrlRepository
-from src.domain.models import URL
+from src.backend.application.ports.repositories import IUrlRepository
+from src.backend.domain.models import URL
 import sqlite3
 
 class SQLite(IUrlRepository):

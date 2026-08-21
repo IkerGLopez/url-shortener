@@ -1,10 +1,18 @@
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.responses import RedirectResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from src.application.use_cases import RedirectAndTrackUseCase, ShortenUrlUseCase, GetUrlStatsUseCase
-from src.domain.exceptions import UrlNotFoundError, UrlExpiredError
+from src.backend.application.use_cases import RedirectAndTrackUseCase, ShortenUrlUseCase, GetUrlStatsUseCase
+from src.backend.domain.exceptions import UrlNotFoundError, UrlExpiredError
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class UrlRequest(BaseModel):
     original_url: str

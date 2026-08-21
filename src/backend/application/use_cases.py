@@ -1,8 +1,8 @@
 from datetime import datetime, timedelta
-from src.application.ports.repositories import IUrlRepository
-from src.domain.exceptions import UrlNotFoundError, UrlExpiredError
-from src.domain.models import URL
-from src.domain.services import generate_alias
+from src.backend.application.ports.repositories import IUrlRepository
+from src.backend.domain.exceptions import UrlNotFoundError, UrlExpiredError
+from src.backend.domain.models import URL
+from src.backend.domain.services import generate_alias
 
 class ShortenUrlUseCase:
     def __init__(self, repository: IUrlRepository):

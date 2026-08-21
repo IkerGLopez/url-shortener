@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from src.domain.models import URL
+from src.backend.domain.models import URL
 
 class IUrlRepository(ABC):
     @abstractmethod

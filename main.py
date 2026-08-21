@@ -1,6 +1,6 @@
 import uvicorn
-import src.infrastructure.config
-from src.infrastructure.adapters.routers.api import app
+import src.backend.infrastructure.config
+from src.backend.infrastructure.adapters.routers.api import app
 
 if __name__ == "__main__":
     print("Iniciando URL Shortener")
